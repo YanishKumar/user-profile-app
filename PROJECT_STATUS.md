@@ -5,8 +5,9 @@
 ## Current Project
 - **Name**: `user-profile-app`
 - **Goal**: User Profile Page with Avatar Upload and Bio
-- **Active Feature Branch**: `001-user-profile`
-- **Tech Stack**: Python 3.12, FastAPI, SQLAlchemy 2.0, Pydantic v2, Pillow, pytest
+- **Active Feature Branch**: `main` (`001-user-profile` baseline)
+- **GitHub Repository**: https://github.com/YanishKumar/user-profile-app
+- **Tech Stack**: Python 3.12, FastAPI, SQLAlchemy 2.0, Pydantic v2, Pillow, Tailwind CSS, pytest
 
 ## Status Summary
 - [x] Feature Specification (`specs/001-user-profile/spec.md`)
