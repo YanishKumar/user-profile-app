@@ -4,9 +4,9 @@
 **Input**: [plan.md](plan.md), [spec.md](spec.md), [data-model.md](data-model.md), [contracts/profile-api.yaml](contracts/profile-api.yaml)
 
 ## Phase 1: Setup & Foundational Infrastructure
-- [ ] T001: Configure project skeleton with directories (`src/models`, `src/schemas`, `src/services`, `src/api`, `tests/unit`, `tests/integration`, `tests/contract`).
-- [ ] T002: Implement SQLite database setup and session manager in [src/models/base.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/base.py).
-- [ ] T003: [P] Implement mock authentication and database dependency provider in [src/api/dependencies.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/dependencies.py).
+- [x] T001: Configure project skeleton with directories (`src/models`, `src/schemas`, `src/services`, `src/api`, `tests/unit`, `tests/integration`, `tests/contract`).
+- [x] T002: Implement SQLite database setup and session manager in [src/models/base.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/base.py).
+- [x] T003: [P] Implement mock authentication and database dependency provider in [src/api/dependencies.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/dependencies.py).
 
 ---
 
