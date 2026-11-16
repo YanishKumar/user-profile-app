@@ -106,3 +106,11 @@ def test_update_profile_empty_display_name_fails(client):
     }
     res = client.put("/api/profile/me", headers=headers, json=invalid_payload)
     assert res.status_code == 400
+
+
+def test_serve_frontend_index_html(client):
+    """Scenario: GET / serves frontend UI index.html with 200 OK."""
+    res = client.get("/")
+    assert res.status_code == 200
+    assert "Personal Profile" in res.text
+    assert "<form id=\"profileForm\"" in res.text

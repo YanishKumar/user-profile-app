@@ -3,7 +3,7 @@
 import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, HTTPException, status
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
 from src.models.base import init_db
@@ -69,3 +69,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 def health_check():
     """Health check endpoint."""
     return {"status": "ok", "service": "user-profile-app"}
+
+
+@app.get("/", include_in_schema=False)
+def serve_index():
+    """Serve the single-page frontend application."""
+    return FileResponse("static/index.html")
