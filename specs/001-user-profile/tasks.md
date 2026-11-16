@@ -37,8 +37,8 @@
 ---
 
 ## Phase 4: User Story 3 (P3) - Public Read-Only Profile View
-- [ ] T018: [US3] Implement `GET /api/profile/{username}` public read-only endpoint in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
-- [ ] T019: [US3] Write integration tests verifying public view exposes only public fields in [tests/integration/test_public_profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_public_profile.py).
-- [ ] T020: [US3] Contract verification test against [specs/001-user-profile/contracts/profile-api.yaml](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/specs/001-user-profile/contracts/profile-api.yaml) in [tests/contract/test_profile_contract.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/contract/test_profile_contract.py).
+- [x] T018: [US3] Implement `GET /api/profile/{username}` public read-only endpoint in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
+- [x] T019: [US3] Write integration tests verifying public view exposes only public fields in [tests/integration/test_public_profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_public_profile.py).
+- [x] T020: [US3] Contract verification test against [specs/001-user-profile/contracts/profile-api.yaml](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/specs/001-user-profile/contracts/profile-api.yaml) in [tests/contract/test_profile_contract.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/contract/test_profile_contract.py).
 
-**Checkpoint US3**: Complete user profile system end-to-end verified.
+**Checkpoint US3**: Complete user profile system end-to-end verified. [PASSED - 36/36 tests green]

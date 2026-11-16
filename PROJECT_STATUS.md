@@ -20,8 +20,9 @@
 - [x] Phase 1: Infrastructure & DB Session (`src/models/base.py`, `src/api/dependencies.py`)
 - [x] User Story 1 (P1 MVP): Bio & Profile Info CRUD (`src/models/profile.py`, `src/services/profile_service.py`, `src/api/routes.py`, `src/main.py`) — 19/19 tests passing
 - [x] User Story 2 (P2): Avatar Image Upload & WebP Processing (`src/models/avatar.py`, `src/services/image_service.py`) — 28/28 tests passing
-- [ ] User Story 3 (P3): Public Read-Only Profile View & Contract Testing
+- [x] User Story 3 (P3): Public Read-Only Profile View & Contract Testing (`tests/integration/test_public_profile.py`, `tests/contract/test_profile_contract.py`) — 36/36 tests passing
 
 ## Next Action
-1. Implement Phase 4 (US3): Public read-only profile access tests & OpenAPI contract compliance validation against profile-api.yaml (Tasks T018–T020).
-2. Connect GitHub repository for cloud sync.
+1. All 20 implementation tasks from `specs/001-user-profile/tasks.md` are 100% complete and passing.
+2. Run `gh auth login` to connect remote repository and push to GitHub.
+3. Feature ready for frontend UI binding or export to Google AI Studio.
