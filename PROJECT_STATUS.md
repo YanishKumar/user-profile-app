@@ -15,13 +15,13 @@
 - [x] Phase 1 REST Contract (`specs/001-user-profile/contracts/profile-api.yaml`)
 - [x] Phase 1 Implementation Plan (`specs/001-user-profile/plan.md`)
 - [x] Team Operating Rules & Git Checkpoint Setup (`AGENTS.md`)
-- [ ] Dependency Installation & Virtualenv Setup (`uv venv`)
-- [ ] Task Breakdown (`specs/001-user-profile/tasks.md`)
-- [ ] User Story 1 (P1 MVP): Bio & Profile Info CRUD
+- [x] Dependency Installation & Virtualenv Setup (`uv venv`)
+- [x] Task Breakdown (`specs/001-user-profile/tasks.md`)
+- [x] Phase 1: Infrastructure & DB Session (`src/models/base.py`, `src/api/dependencies.py`)
+- [x] User Story 1 (P1 MVP): Bio & Profile Info CRUD (`src/models/profile.py`, `src/services/profile_service.py`, `src/api/routes.py`, `src/main.py`) — 19/19 tests passing
 - [ ] User Story 2 (P2): Avatar Image Upload & WebP Processing
 - [ ] User Story 3 (P3): Public Read-Only Profile View
 
 ## Next Action
-1. Set up virtual environment and install project dependencies with `uv`.
-2. Generate ordered task list (`tasks.md`).
-3. Connect GitHub repository for cloud sync / Google AI Studio bridge.
+1. Implement Phase 3 (US2): Avatar upload endpoint, validation, EXIF stripping, and 256x256 WebP transformation via Pillow (Tasks T011–T017).
+2. Connect GitHub repository for cloud sync.

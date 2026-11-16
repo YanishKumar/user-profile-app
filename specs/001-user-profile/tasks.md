@@ -11,15 +11,15 @@
 ---
 
 ## Phase 2: User Story 1 (P1 MVP) - View and Edit Bio & Profile Info
-- [ ] T004: [US1] Define SQLAlchemy database model for `UserProfile` in [src/models/profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/profile.py).
-- [ ] T005: [US1] [P] Define Pydantic request/response schemas (`ProfileResponse`, `ProfileUpdateRequest`) in [src/schemas/profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/schemas/profile.py).
-- [ ] T006: [US1] Implement `ProfileService` with bio length validation (max 500 chars) and sanitization in [src/services/profile_service.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/services/profile_service.py).
-- [ ] T007: [US1] Implement routes `GET /api/profile/me` and `PATCH /api/profile/me` in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
-- [ ] T008: [US1] Bootstrap FastAPI app and router in [src/main.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/main.py).
-- [ ] T009: [US1] Write unit tests for bio sanitization in [tests/unit/test_sanitization.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/unit/test_sanitization.py).
-- [ ] T010: [US1] Write integration tests for profile view and update flow in [tests/integration/test_profile_flow.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_profile_flow.py).
+- [x] T004: [US1] Define SQLAlchemy database model for `UserProfile` in [src/models/profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/profile.py).
+- [x] T005: [US1] [P] Define Pydantic request/response schemas (`ProfileResponse`, `ProfileUpdateRequest`) in [src/schemas/profile.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/schemas/profile.py).
+- [x] T006: [US1] Implement `ProfileService` with bio length validation (max 500 chars) and sanitization in [src/services/profile_service.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/services/profile_service.py).
+- [x] T007: [US1] Implement routes `GET /api/profile/me` and `PATCH /api/profile/me` in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
+- [x] T008: [US1] Bootstrap FastAPI app and router in [src/main.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/main.py).
+- [x] T009: [US1] Write unit tests for bio sanitization in [tests/unit/test_sanitization.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/unit/test_sanitization.py).
+- [x] T010: [US1] Write integration tests for profile view and update flow in [tests/integration/test_profile_flow.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_profile_flow.py).
 
-**Checkpoint US1**: Profile view and edit bio fully operational, tested with >80% coverage.
+**Checkpoint US1**: Profile view and edit bio fully operational, tested with >80% coverage. [PASSED - 19/19 tests green]
 
 ---
 
