@@ -2,7 +2,7 @@
 
 import os
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Request, status
+from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
@@ -27,12 +27,25 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Mount static default avatars
+# Mount static default avatars and uploaded media
 os.makedirs("static/avatars", exist_ok=True)
+os.makedirs("uploads/avatars", exist_ok=True)
 app.mount("/static/avatars", StaticFiles(directory="static/avatars"), name="static_avatars")
+app.mount("/media/avatars", StaticFiles(directory="uploads/avatars"), name="media_avatars")
 
 # Include profile routes
 app.include_router(profile_router)
+
+
+@app.exception_handler(HTTPException)
+async def custom_http_exception_handler(request: Request, exc: HTTPException):
+    """Ensure HTTPExceptions formatted with dict details match OpenAPI ErrorResponse."""
+    if isinstance(exc.detail, dict):
+        return JSONResponse(status_code=exc.status_code, content=exc.detail)
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": "http_error", "message": str(exc.detail)},
+    )
 
 
 @app.exception_handler(RequestValidationError)

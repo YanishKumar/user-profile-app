@@ -24,15 +24,15 @@
 ---
 
 ## Phase 3: User Story 2 (P2) - Avatar Image Upload and Preview
-- [ ] T011: [US2] Define SQLAlchemy database model for `AvatarAsset` in [src/models/avatar.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/avatar.py).
-- [ ] T012: [US2] [P] Define Pydantic schemas for avatar upload response in [src/schemas/avatar.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/schemas/avatar.py).
-- [ ] T013: [US2] Implement `ImageService` with Pillow to strip EXIF, resize to 256x256, and re-encode to WebP in [src/services/image_service.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/services/image_service.py).
-- [ ] T014: [US2] Implement routes `POST /api/profile/me/avatar` and `DELETE /api/profile/me/avatar` in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
-- [ ] T015: [US2] Mount static avatar file serving in [src/main.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/main.py).
-- [ ] T016: [US2] Write unit tests for image transformation and format rejection in [tests/unit/test_image_processing.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/unit/test_image_processing.py).
-- [ ] T017: [US2] Write integration tests for avatar upload, preview, and removal in [tests/integration/test_avatar_upload.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_avatar_upload.py).
+- [x] T011: [US2] Define SQLAlchemy database model for `AvatarAsset` in [src/models/avatar.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/models/avatar.py).
+- [x] T012: [US2] [P] Define Pydantic schemas for avatar upload response in [src/schemas/avatar.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/schemas/avatar.py).
+- [x] T013: [US2] Implement `ImageService` with Pillow to strip EXIF, resize to 256x256, and re-encode to WebP in [src/services/image_service.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/services/image_service.py).
+- [x] T014: [US2] Implement routes `POST /api/profile/me/avatar` and `DELETE /api/profile/me/avatar` in [src/api/routes.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/api/routes.py).
+- [x] T015: [US2] Mount static avatar file serving in [src/main.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/src/main.py).
+- [x] T016: [US2] Write unit tests for image transformation and format rejection in [tests/unit/test_image_processing.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/unit/test_image_processing.py).
+- [x] T017: [US2] Write integration tests for avatar upload, preview, and removal in [tests/integration/test_avatar_upload.py](file:///C:/Users/Welcome/.gemini/antigravity/scratch/user-profile-app/tests/integration/test_avatar_upload.py).
 
-**Checkpoint US2**: Avatar upload, validation, WebP processing, and avatar deletion verified.
+**Checkpoint US2**: Avatar upload, validation, WebP processing, and avatar deletion verified. [PASSED - 28/28 tests green]
 
 ---
 

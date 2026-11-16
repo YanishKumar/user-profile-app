@@ -7,6 +7,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 from fastapi import HTTPException, status
 from src.models.profile import UserProfile
+from src.models.avatar import AvatarAsset
+from src.services.image_service import ImageService
 
 DEFAULT_AVATAR_URL = "/static/avatars/default.svg"
 MAX_BIO_LENGTH = 500
@@ -51,7 +53,7 @@ def resolve_avatar_url(active_avatar_id: str | None, base_url: str = "") -> str:
     """Resolve full avatar URL from active avatar asset ID."""
     if not active_avatar_id:
         return f"{base_url}{DEFAULT_AVATAR_URL}"
-    return f"{base_url}/api/avatars/{active_avatar_id}.webp"
+    return f"{base_url}/media/avatars/{active_avatar_id}.webp"
 
 
 class ProfileService:
@@ -130,5 +132,78 @@ class ProfileService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail={"error": "not_found", "message": f"User '{username}' not found"},
             )
+
+        return profile
+
+    @staticmethod
+    def set_avatar(
+        db: Session,
+        user_id: str,
+        asset_id: str,
+        filename: str,
+        file_size_bytes: int,
+        width: int,
+        height: int,
+    ) -> UserProfile:
+        """Associate new uploaded avatar asset with the user profile."""
+        stmt = select(UserProfile).where(UserProfile.user_id == user_id)
+        profile = db.scalar(stmt)
+        if not profile:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail={"error": "not_found", "message": "Profile not found"},
+            )
+
+        # Deactivate old assets
+        old_assets_stmt = select(AvatarAsset).where(
+            AvatarAsset.user_id == user_id,
+            AvatarAsset.is_active == True,
+        )
+        for old_asset in db.scalars(old_assets_stmt):
+            old_asset.is_active = False
+
+        # Create new asset record
+        new_asset = AvatarAsset(
+            id=asset_id,
+            user_id=user_id,
+            filename=filename,
+            mime_type="image/webp",
+            file_size_bytes=file_size_bytes,
+            width=width,
+            height=height,
+            is_active=True,
+        )
+        db.add(new_asset)
+
+        profile.active_avatar_id = asset_id
+        profile.updated_at = datetime.now(timezone.utc)
+        db.commit()
+        db.refresh(profile)
+        return profile
+
+    @staticmethod
+    def remove_avatar(db: Session, user_id: str) -> UserProfile:
+        """Remove custom avatar and revert profile to default placeholder."""
+        stmt = select(UserProfile).where(UserProfile.user_id == user_id)
+        profile = db.scalar(stmt)
+        if not profile:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail={"error": "not_found", "message": "Profile not found"},
+            )
+
+        if profile.active_avatar_id:
+            old_assets_stmt = select(AvatarAsset).where(
+                AvatarAsset.user_id == user_id,
+                AvatarAsset.is_active == True,
+            )
+            for old_asset in db.scalars(old_assets_stmt):
+                old_asset.is_active = False
+                ImageService.delete_avatar_file(old_asset.filename)
+
+            profile.active_avatar_id = None
+            profile.updated_at = datetime.now(timezone.utc)
+            db.commit()
+            db.refresh(profile)
 
         return profile
