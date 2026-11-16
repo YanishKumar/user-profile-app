@@ -1,0 +1,6 @@
+﻿{
+    "script":  "ps",
+    "integration":  "agy",
+    "version":  "1.4.1",
+    "feature_numbering":  "sequential"
+}

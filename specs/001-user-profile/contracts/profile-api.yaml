@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  title: User Profile & Avatar API
+  description: Endpoints for user profile management, avatar uploads, and public profile views.
+  version: 1.0.0
+paths:
+  /api/profile/me:
+    get:
+      summary: Get authenticated user's profile
+      operationId: getMyProfile
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '401':
+          description: Unauthorized
+    put:
+      summary: Update authenticated user's bio and display name
+      operationId: updateMyProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '400':
+          description: Validation error (e.g. bio exceeds 500 characters)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+
+  /api/profile/me/avatar:
+    post:
+      summary: Upload and update avatar image
+      operationId: uploadAvatar
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Image file (JPEG, PNG, WebP up to 5MB)
+      responses:
+        '200':
+          description: Avatar uploaded and processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvatarUploadResponse'
+        '400':
+          description: Invalid file type or file size exceeds 5MB
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+    delete:
+      summary: Remove custom avatar and revert to default placeholder
+      operationId: deleteAvatar
+      responses:
+        '200':
+          description: Avatar removed successfully; placeholder restored
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '401':
+          description: Unauthorized
+
+  /api/profile/{username}:
+    get:
+      summary: Get public read-only user profile
+      operationId: getPublicProfile
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The username handle to look up
+      responses:
+        '200':
+          description: Public profile found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicProfileResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /media/avatars/{filename}:
+    get:
+      summary: Serve static processed avatar image
+      operationId: getAvatarImage
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image binary stream
+          content:
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Image not found
+
+components:
+  schemas:
+    ProfileResponse:
+      type: object
+      required:
+        - userId
+        - username
+        - displayName
+        - bio
+        - avatarUrl
+        - updatedAt
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        bio:
+          type: string
+          maxLength: 500
+        avatarUrl:
+          type: string
+          format: uri
+        updatedAt:
+          type: string
+          format: date-time
+
+    UpdateProfileRequest:
+      type: object
+      required:
+        - displayName
+      properties:
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 64
+        bio:
+          type: string
+          maxLength: 500
+
+    AvatarUploadResponse:
+      type: object
+      required:
+        - assetId
+        - avatarUrl
+        - fileSizeBytes
+        - width
+        - height
+      properties:
+        assetId:
+          type: string
+        avatarUrl:
+          type: string
+          format: uri
+        fileSizeBytes:
+          type: integer
+        width:
+          type: integer
+          example: 256
+        height:
+          type: integer
+          example: 256
+
+    PublicProfileResponse:
+      type: object
+      required:
+        - username
+        - displayName
+        - bio
+        - avatarUrl
+      properties:
+        username:
+          type: string
+        displayName:
+          type: string
+        bio:
+          type: string
+        avatarUrl:
+          type: string
+          format: uri
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
